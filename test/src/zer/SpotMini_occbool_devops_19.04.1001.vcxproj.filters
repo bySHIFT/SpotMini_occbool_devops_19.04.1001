@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\src">
+      <UniqueIdentifier>{e36f1dc3-3bb1-4e88-b696-37d05b3c37d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\connector">
+      <UniqueIdentifier>{520b29f7-f05a-4d1c-a3fd-94298a8a755b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\mq">
+      <UniqueIdentifier>{d33f8e93-4615-4730-bb45-b611952d0b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\contents">
+      <UniqueIdentifier>{b842d3ef-002c-4c62-b748-a2cc5fe69ab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\theapp">
+      <UniqueIdentifier>{c46c6290-c217-4b9c-b6a6-3761f6ec059e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_check_result_1st.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_execute.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_get_connection.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_get_version.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_init_biz_options.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_init_connection_information.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_init_occbool_project_bimmodels.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_init_occbool_projects.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_init_result_occbool_calc_digest.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_try_check.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\connector\connector_write_calc_result.cpp">
+      <Filter>Source Files\src\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="src\contents\contents_bim_model.cpp">
+      <Filter>Source Files\src\contents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\contents\contents_get_biz_options.cpp">
+      <Filter>Source Files\src\contents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mq\mq_init_information.cpp">
+      <Filter>Source Files\src\mq</Filter>
+    </ClCompile>
+    <ClCompile Include="src\theapp\theapp_calc_analyzer.cpp">
+      <Filter>Source Files\src\theapp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\theapp\theapp_init_biz_options.cpp">
+      <Filter>Source Files\src\theapp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\theapp\theapp_init_occbool_project_bimmodels_calc.cpp">
+      <Filter>Source Files\src\theapp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\theapp\theapp_mq_send_request_calc.cpp">
+      <Filter>Source Files\src\theapp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\theapp\theapp_mq_send_response_calc.cpp">
+      <Filter>Source Files\src\theapp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\init_theapp.cpp">
+      <Filter>Source Files\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_amqp.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_application.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_application_define.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_connection_params_parse.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_cout.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_hello.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_message.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_namespace.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_string_to_array.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\my_time.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,58 @@
+========================================
+========================================
+        欢迎, 
+    让我们来探索一些新功能。
+========================================
+========================================
+>>>> 2019-04-29 13:16:40
+  VER: 19.04
+
+  获取环境变量设定 
+    CI_CONNECTOR_MYSQL_CONNECTION= root:mysqladm@192.168.1.111:3306
+>> 请求链接数据服务...
+  链接信息: tcp://root@192.168.1.111:3306
+  当前 MySQL 版本信息： 5.7.19
+  当前 zer 使用数据库版本信息： 19.04.001001
+
+>> 正在初始化相关配置数据, 请稍候...
+  获取环境变量设定 
+    CI_MQ_CALC_REQUEST_HOST_CONN_PARAMS= 未设定
+  获取环境变量设定 
+    CI_MQ_CALC_REQUEST_CMD_NAME= 未设定
+  获取环境变量设定 
+    CI_MQ_CALC_RESPONSE_HOST_CONN_PARAMS= 未设定
+  获取环境变量设定 
+    CI_MQ_CALC_RESPONSE_CMD_NAME= 未设定
+  获取环境变量设定 
+    CI_OCCBOOL_PROJECT_BIMMODEL_RECORD_IDS= 未设定
+  获取环境变量设定 
+    CI_OCCBOOL_PROJECT_BIMMODEL_CATEGORIES= 未设定
+  获取环境变量设定 
+    CI_WAIT_TIMEOUT_FROM_EMPTY_QUEUE= 未设定
+  获取环境变量设定 
+    CI_TOLERANCE= 未设定
+  获取环境变量设定 
+    CI_MAX_COUNT_CATEGORY= 未设定
+
+  请求 OCCBOOL 算量MQ 信息:
+    服务器链接信息: guest:guest@192.168.1.95:5672
+    队列名称: CALC_OCCBOOL_DEVOPS_1010
+    验证 RabbitMQ 服务器: 成功
+  回复 OCCBOOL 算量结果MQ 信息:
+    服务器链接信息: guest:guest@192.168.1.95:5672
+    队列名称: CALC_OCCBOOL_DEVOPS_2010
+    验证 RabbitMQ 服务器: 成功
+
+<< 相关配置数据初始化完毕(STATE: 0)
+
+
+>> 正在初始化 OCCBOOL 算量用的工程构件信息数据, 请稍候...
+>>>> ERR: SQLException in src\connector\connector_init_occbool_project_bimmodels.cpp(connector_init_occbool_project_bimmodels) on line 103
+>>>> ERR: Incorrect number of arguments for PROCEDURE zer.proc_get_occbool_bimmodels_calc; expected 2, got 3 (MySQL error code: 1318, SQLState: 42000 )
+  未获取到当前配置的 OCCBOOL 算量用 构件情报
+    设定的 OCCBOOL 算量用 工程情报: 2362^|2352^|2383     设定的 OCCBOOL 算量用 构件类别情报: 1|3|5|7
+
+<< OCCBOOL 算量用的工程构件信息数据初始化完毕(STATE: 1)
+
+
+>>>> 5秒后自动关闭, 请稍等...
