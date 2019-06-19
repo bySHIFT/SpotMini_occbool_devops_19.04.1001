@@ -171,6 +171,7 @@ private:
     std::string message { "" };
     int state { zer::config::state::error };
     std::string bundle_data { "" };
+    std::string bundle_order_key{ "" };
   };
 
 #ifndef _MSC_VER

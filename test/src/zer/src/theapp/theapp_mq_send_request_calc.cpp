@@ -48,8 +48,27 @@ int theapp_mq_send_request_calc()
               content.bundle_data = bim_model.first;
               content.message = bim_model.second \
                 .calc_mq_conents.request_message;
+
+              { // 排序键的设定
+                std::stringstream ss;
+                const auto catalog = bim_model.second.bimmodel_1st.category;
+                // catalog: 7 板最优先计算
+                ss << "CAT=" << std::setw(10) << std::setfill((catalog == 7 ? '9': '0')) << std::right << std::to_string(catalog)
+                    << "_ELEMENTID=" << std::setw(16) << std::setfill('0') << std::right << std::to_string(bim_model.second.bimmodel_1st.elementid)
+                    << "_GUID=" << bim_model.first;
+
+                content.bundle_order_key = ss.str();
+              }
+
               contents.emplace_back(std::move(content));
             }
+          }
+
+          { // 整理发送 MQ 顺
+            // 构件类别值大的优先计算 (防水|板 比较耗时, 优先计算)
+              contents.sort([](const zer::my_amqp::send_data &lhs, const zer::my_amqp::send_data &rhs) {
+                  return (lhs.bundle_order_key > rhs.bundle_order_key);
+              });
           }
 
           std::string error_message;

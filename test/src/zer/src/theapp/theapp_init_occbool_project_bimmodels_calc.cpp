@@ -37,7 +37,6 @@ int theapp_init_occbool_project_bimmodels_calc()
   "MODELID": "%s",
   "CMD": "CALC",
   "VERSION": "%s",
-  "ELEMENTTYPE": %d,
   "ELECATEGORY": %d,
   "IPADDRESS": "%s",
   "PORT": "%d",
@@ -53,7 +52,6 @@ int theapp_init_occbool_project_bimmodels_calc()
           , bimmodel.id_model.data()
           , zer::config::product_version.data()
           , bimmodel.category
-          , bimmodel.category
           , theApp.info_response_calc_mq.host.data()
           , theApp.info_response_calc_mq.port
           , theApp.info_response_calc_mq.queue_name.data()
@@ -67,7 +65,6 @@ int theapp_init_occbool_project_bimmodels_calc()
           , fmt_mq_usage
           , bimmodel.id_model.data()
           , zer::config::product_version.data()
-          , bimmodel.category
           , bimmodel.category
           , theApp.info_response_calc_mq.host.data()
           , theApp.info_response_calc_mq.port
