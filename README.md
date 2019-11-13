@@ -83,7 +83,7 @@ public:
   };
 public:
   explicit cicd(const std::string& commit_id) : sha1(commit_id) {}
-  explicit operator bool()
+  explicit operator bool() const
   {
     const auto over = jobs.stage - 1;
     return (over == steps);
@@ -111,7 +111,7 @@ private:
 
   cicd& run()
   {
-    steps &= ~(1 << jobs.stage);
+    // steps &= ~(1 << jobs.stage);
     steps |= jobs.stage;
 
     std::cout << sha1 << std::endl;
