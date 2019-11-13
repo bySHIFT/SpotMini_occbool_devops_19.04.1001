@@ -6,27 +6,31 @@ namespace internal
 template<typename T>
 class task;
 
-template<typename R, typename... Args>
-class task<R(Args...)>
+template<typename R, typename... ArgTypes>
+class task<R(ArgTypes...)>
 {
 public:
-  task(std::function<R(Args...)>&& f) : m_fn(std::move(f)) {}
-  task(std::function<R(Args...)>& f) : m_fn(f) {}
+  task(std::function<R(ArgTypes...)>&& f) : m_fn(std::move(f)) {}
+  task(std::function<R(ArgTypes...)>& f) : m_fn(f) {}
 
-  template<typename... Args>
-  R run(Args&&... args) { return m_fn(std::forward<Args>(args)...); }
+  template<typename... ArgTypes>
+  R run(ArgTypes&&... args) { return m_fn(std::forward<ArgTypes>(args)...); }
 
   template<typename F>
-  auto then(F& f)/*->task<typename std::result_of<F(R)>::type(Args...)>*/
+  auto then(F&& f)/*->task<typename std::result_of<F(R)>::type(ArgTypes...)>*/
   {
-    using return_type = typename result_of<F(R)>::type;
-    return task<return_type(Args...)>([this, &f](Args&&... args) {
-      return f(m_fn(std::forward<Args>(args)...));
+    // (C++14 起)
+    // (C++17 中弃用)
+    // (C++20 中移除)
+    using result_of_t = typename std::result_of<F(R)>::type;
+
+    return task<result_of_t(ArgTypes...)>([this, &f](ArgTypes&&... args) {
+      return f(m_fn(std::forward<ArgTypes>(args)...));
     });
   }
 
 private:
-  std::function<R(Args...)> m_fn;
+  std::function<R(ArgTypes...)> m_fn;
 };
 
 class cicd
@@ -85,16 +89,16 @@ public:
     return (over == steps);
   }
 
-#define RUN_NEXT_JOB(next_cicd, step) \
-  next_cicd.jobs = job { step };      \
-  if (!next_cicd) return next_cicd;   \
-  return cicd::run(next_cicd);
+#define RUN_NEXT_JOB(step)    \
+  jobs = job { step };        \
+  if (!(*this)) return *this; \
+  return run();
 
-  cicd& cppcheck(cicd& next)  { RUN_NEXT_JOB(next, status::CPPCHECK); }
-  cicd& build(cicd& next)     { RUN_NEXT_JOB(next, status::BUILD); }
-  cicd& ci(cicd& next)        { RUN_NEXT_JOB(next, status::CI); }
-  cicd& cd(cicd& next)        { RUN_NEXT_JOB(next, status::CD); }
-  cicd& clean(cicd& next)     { RUN_NEXT_JOB(next, status::CLEAN); }
+  cicd& cppcheck()  { RUN_NEXT_JOB(status::CPPCHECK); }
+  cicd& build()     { RUN_NEXT_JOB(status::BUILD); }
+  cicd& ci()        { RUN_NEXT_JOB(status::CI); }
+  cicd& cd()        { RUN_NEXT_JOB(status::CD); }
+  cicd& clean()     { RUN_NEXT_JOB(status::CLEAN); }
 
 #undef RUN_NEXT_JOB
 
@@ -105,15 +109,15 @@ private:
   job jobs;
   int steps { status::OK_S };
 
-  static cicd& run(cicd& current_cicd)
+  cicd& run()
   {
-    current_cicd.steps &= ~(1 << current_cicd.jobs.stage);
-    current_cicd.steps |= current_cicd.jobs.stage;
+    steps &= ~(1 << jobs.stage);
+    steps |= jobs.stage;
 
-    std::cout << current_cicd.sha1 << std::endl;
-    std::cout << current_cicd.jobs;
+    std::cout << sha1 << std::endl;
+    std::cout << jobs;
 
-    return current_cicd;
+    return *this;
   }
 };
 
@@ -124,11 +128,11 @@ int TestTask()
     [](cicd& once_cicd) -> cicd& { return once_cicd; };
   cicd once_cicd("784dc082");
   const auto result = my_cicd
-    .then([&once_cicd](cicd& commit){ return once_cicd.cppcheck(commit); })
-    .then([&once_cicd](cicd& commit){ return once_cicd.build(commit); })
-    .then([&once_cicd](cicd& commit){ return once_cicd.ci(commit); })
-    .then([&once_cicd](cicd& commit){ return once_cicd.cd(commit); })
-    .then([&once_cicd](cicd& commit){ return once_cicd.clean(commit); })
+    .then([](cicd& commit){ return commit.cppcheck(); })
+    .then([](cicd& commit){ return commit.build(); })
+    .then([](cicd& commit){ return commit.ci(); })
+    .then([](cicd& commit){ return commit.cd(); })
+    .then([](cicd& commit){ return commit.clean(); })
     .run(once_cicd);
 
   const auto steps = result.get_steps();
